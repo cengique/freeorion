@@ -20,7 +20,7 @@ apps:
     plugs: [home, pulseaudio, opengl, network, screen-inhibit-control, browser-support, x11]
     desktop: usr/share/applications/org.freeorion.FreeOrion.desktop
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion
+      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion:$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}
       LIBGL_DRIVERS_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
       # PYTHONPATH: $SNAP/usr/lib/python3.6
   ### freeorion-godot:
@@ -37,13 +37,13 @@ apps:
     command: usr/bin/freeoriond
     plugs: [home, network, network-bind]
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion
+      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion:$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}:$SNAP_DESKTOP_RUNTIME/usr/lib/${CRAFT_ARCH_TRIPLET}
       #PYTHONPATH: $SNAP/usr/lib/python3.6
   freeoriond-dedicated:
     command: usr/bin/freeoriond --hostless --network.server.unconn-human-empire-players.max 0 --network.server.conn-human-empire-players.min 0
     plugs: [home, network, network-bind]
     environment:
-      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion
+      LD_LIBRARY_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/freeorion:$SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}:$SNAP_DESKTOP_RUNTIME/usr/lib/${CRAFT_ARCH_TRIPLET}
       #PYTHONPATH: $SNAP/usr/lib/python3.6
 
 layout:
@@ -113,7 +113,7 @@ parts:
       - mesa-utils
       - libgl1-mesa-dri
       # - python3
-      # - libpython3.8
+      - libpython3.8
       - libboost-date-time1.71.0
       - libboost-filesystem1.71.0
       - libboost-iostreams1.71.0
